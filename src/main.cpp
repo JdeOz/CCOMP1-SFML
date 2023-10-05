@@ -1,21 +1,31 @@
 #include <SFML/Graphics.hpp>
 
-int main()
-{
-    auto window = sf::RenderWindow{ { 1920u, 1080u }, "CMake SFML Project" };
-    window.setFramerateLimit(144);
+int main() {
+    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Example");
 
-    while (window.isOpen())
-    {
-        for (auto event = sf::Event{}; window.pollEvent(event);)
-        {
-            if (event.type == sf::Event::Closed)
-            {
+    // Crear un círculo
+    sf::CircleShape circle(50); // Radio del círculo
+
+    // Configurar el color del círculo
+    circle.setFillColor(sf::Color::Blue);
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
 
+        // Borrar la ventana
         window.clear();
+
+        // Dibujar el círculo en la ventana
+        window.draw(circle);
+
+        // Mostrar el contenido de la ventana
         window.display();
     }
+
+    return 0;
 }
